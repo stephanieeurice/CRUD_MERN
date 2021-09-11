@@ -39,18 +39,19 @@ app.post("/create", (req, res) => {
 });
 
 app.get("/:id", (req, res) => {
-    const id = req.params.id;
+    const id = req.params.id
     Todo.findById(id, (err, todo) => {
         res.json(todo);
     });
 });
 
 app.post("/:id", (req, res) => {
-    const id = req.params.id;
+    const id = req.params.id
     Todo.findById(id, (err, todo) => {
       if (!todo) {
         res.status(404).send("Todo not found");
       } else {
+        todo.description = req.body.description
         todo.text = req.body.text;
   
         todo
